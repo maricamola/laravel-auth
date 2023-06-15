@@ -128,5 +128,5 @@ In web.php inseriamo le rotte protette da middleware:
             Route::get('/', [DashboardController::class, 'index'])->name('home');
         });
 
-
+A questo punto il nostro layouts base è completo, volendo possiamo aggiungere pagine 
 
