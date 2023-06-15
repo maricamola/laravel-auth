@@ -11,4 +11,9 @@ class DashboardController extends Controller
 
         return view('admin.home');
     }
+
+    public function stats(){
+
+        return view('admin.stats');
+    }
 }

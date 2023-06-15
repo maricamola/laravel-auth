@@ -19,11 +19,16 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/', [PageController::class, 'index'])->name('home');
 
+Route::get('/contatti', [PageController::class, 'contacts'])->name('contacts');
+
+
 Route::middleware(['auth' , 'verified'])
         ->name('admin.')
         ->prefix('admin')
         ->group(function(){
             Route::get('/', [DashboardController::class, 'index'])->name('home');
+            //Aggiungiamo qui le altre rotte protette
+            Route::get('/stats', [DashboardController::class, 'stats'])->name('stats');
         });
 
 require __DIR__.'/auth.php';
