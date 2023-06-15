@@ -7,7 +7,7 @@
 Nuovo progetto usando laravel breeze ed il pacchetto Laravel 9 Preset con autenticazione.
 
 ---------
-**TODO:**
+**TODO:S**
 
 1. Creare progetto con comando:;
 
@@ -29,13 +29,46 @@ Nuovo progetto usando laravel breeze ed il pacchetto Laravel 9 Preset con autent
 
 6. Lanciare comando **'npm i'**;
 
-7. Apriamo il progetto: duplichiamo e rinominiamo il file .env;
-
-8. Apriamo due terminali e lanciamo il progetto;
+7. Apriamo due terminali e lanciamo il progetto;
 
 **- npm run dev**
 
 **- hp artisan serve**
 
 ----------------
+
+8. Creiamo il nostra db con phpmyadmin e lo agganciamo al progetto tramite .env
+
+9. Creiamo la migration con il comando;
+
+**php artisan migrate**
+
+10. Controlliamo che siano stati aggiunti in campi nel db!
+
+-------
+
+## Layouts
+
+1. Cominciamo a separare gli ambienti;
+
+- Creiamo cartella guest in views
+- Creiamo file home.blade.php in guest
+
+**Home deve estendere laytouts.guest mentre in nel FILE guest.blade.php inseriamo la @section('content')**
+
+2. Diviamo gli stili ;
+
+- Andiamo in vite.config.js e aggiungiamo due file per la cartella guest;
+
+- Creiamo i due file; 
+
+In scss aggiungiamo file appGuest.scss 
+
+In js aggiungiamo file appGuest.js
+
+## NB
+Per fare in modo che tutti funzioni correttamente, torniamo nel file guest.blade.php e correggiamo i file @vite che altre ad essere 'appGuest' sono scss e non css.
+
+----------
+
 
