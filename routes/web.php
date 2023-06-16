@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Guest\PageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,7 @@ Route::middleware(['auth' , 'verified'])
             Route::get('/', [DashboardController::class, 'index'])->name('home');
             //Aggiungiamo qui le altre rotte protette
             Route::get('/stats', [DashboardController::class, 'stats'])->name('stats');
+            Route::resource('projects', ProjectController::class);
         });
 
 require __DIR__.'/auth.php';

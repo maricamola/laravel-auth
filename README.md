@@ -76,7 +76,7 @@ In js aggiungiamo file appGuest.js
 
 ----------
 
-**Admin deve estendere layouts.app**
+**Admin deve estendere layouts.admin**
 
 - Andiamo in views->profile->dashboard.blade.php (che poi elimineremo) e copiamo la struttura nel file home.blade.php dell'admin. 
 
