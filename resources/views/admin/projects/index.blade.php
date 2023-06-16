@@ -23,7 +23,7 @@
                 <td>{{ $project->title }}</td>
                 <td>{{ $project->date_creation }}</td>
                 <td>{{ $project->type }}</td>
-                <td><a href="#" class="btn btn-primary">Apri</a></td>
+                <td><a href="{{ route('admin.projects.show' , $project) }}" class="btn btn-primary">Apri</a></td>
             </tr>
             @endforeach
 
