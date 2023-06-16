@@ -37,7 +37,12 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
+        $form_data = $request->all();
+
+        $new_project = new Project();
+        // Creare slug
+
     }
 
     /**
