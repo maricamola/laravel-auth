@@ -31,6 +31,8 @@
             id="text"></textarea>
         </div>
 
+        <button type="submit" class="btn btn-success">Invia</button>
+
 
     </form>
 
