@@ -3,32 +3,68 @@
 @section('content')
 <div class="container p-5">
 
+    @if ($errors->any())
+        <div class="alert alert-danger" role="alert">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <h4>Inserisci nuovo progetto</h4>
 
     <form action="{{ route('admin.projects.store')}}" method="POST">
         @csrf
         <div class="mb-3">
-            <label
-            for="text"
-            class="form-label">Titolo</label>
+            <label for="text" class="form-label">Titolo</label>
             <input
-            class="form-control"
+            class="form-control @error('title') is-invalid @enderror"
+            id="title"
+            value="{{ old('title') }}"
             type="text"
             name="title"
-            placeholder="Titolo"
-            id="title">
+            placeholder="Titolo">
+            @error('title')
+                <p class="text-danger">{{ $message }}</p>
+            @enderror
         </div>
 
         <div class="mb-3">
-            <label
-            for="text"
-            class="form-control"></label>
-            <textarea
+            <label for="text" class="form-label">Tipologia</label>
+            <input
+            class="form-control"
+            id="type"
+            value="{{ old('type') }}"
             type="text"
-            name="text"
+            name="type"
+            placeholder="Tipologia">
+        </div>
+
+        <div class="mb-3">
+            <label for="text" class="form-label">Data di creazione</label>
+            <input
+            class="form-control"
+            id="date"
+            value="{{ old('date') }}"
+            type="text"
+            name="date"
+            placeholder="Data">
+        </div>
+
+        <div class="mb-3">
+            <label for="text" class="form-label">Descrizione progetto</label>
+            <textarea
+            id="text"
+            class="form-control @error('description') is-invalid @enderror"
+            type="text"
+            name="description"
             cols="30"
-            rows="10"
-            id="text"></textarea>
+            rows="10">{{ old('description') }}</textarea>
+            @error('title')
+            <p class="text-danger">{{ $message }}</p>
+            @enderror
         </div>
 
         <button type="submit" class="btn btn-success">Invia</button>

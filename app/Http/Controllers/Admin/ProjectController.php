@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Http\Requests\ProjectRequest;
+
 
 class ProjectController extends Controller
 {
@@ -15,8 +17,15 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
-        return view('admin.projects.index', compact('projects'));
+        $direction= 'asc';
+        $projects = Project::orderBy('id', $direction)->paginate(5);
+        return view('admin.projects.index', compact('projects', 'direction'));
+    }
+
+    public function orderBy($direction){
+        $direction = $direction === 'asc' ? 'desc' : 'asc';
+        $projects = Project::orderBy('id', $direction)->paginate(5);
+        return view('admin.projects.index', compact('projects', 'direction'));
     }
 
     /**
@@ -35,14 +44,18 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProjectRequest $request)
     {
-        dd($request->all());
+        // dd($request->all());
         $form_data = $request->all();
 
         $new_project = new Project();
         // Creare slug
-
+        $form_data['slug'] = Project::generateSlug($form_data['title']);
+        $form_data['date_creation'] = date('Y-m-d');
+        $new_project->fill($form_data);
+        $new_project->save();
+        return redirect()->route('admin.projects.show', $new_project);
     }
 
     /**

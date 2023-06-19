@@ -19,7 +19,7 @@ class ProjectsTableSeeder extends Seeder
         foreach($projects as $project);
         $new_project =  New Project();
         $new_project->title = $project['title'];
-        $new_project->slug = $project['slug'];
+        $new_project->slug = Project::generateSlug($new_project->title);
         $new_project->type = $project['type'];
         $new_project->thumb = $project['thumb'];
         $new_project->date_creation = $project['date_creation'];

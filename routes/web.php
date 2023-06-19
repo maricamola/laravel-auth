@@ -31,6 +31,7 @@ Route::middleware(['auth' , 'verified'])
             //Aggiungiamo qui le altre rotte protette
             Route::get('/stats', [DashboardController::class, 'stats'])->name('stats');
             Route::resource('projects', ProjectController::class);
+            Route::get('orderby/{direction}', [ProjectController::class, 'orderby'])->name('orderby');
         });
 
 require __DIR__.'/auth.php';

@@ -1,9 +1,13 @@
 @import '~bootstrap/scss/bootstrap';
 
+body{
+    font-family:'Montserrat';
+}
+
 
 header{
     height: 60px;
-    background-color: antiquewhite;
+    color: white;
 }
 
 aside{
@@ -15,7 +19,7 @@ aside{
             li{
                 margin-bottom: 10px;
             a{
-                color: black;
+                color: white;
                 text-decoration: none;
                 font-size: .9rem;
                 &:hover{
@@ -30,5 +34,9 @@ aside{
 
 .main-wrapper{
     height: calc(100vh - 60px);
+}
+
+.ck-editor__editable_inline{
+    min-height: 300px;
 }
 

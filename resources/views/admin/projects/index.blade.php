@@ -8,10 +8,10 @@
     <table class="table">
         <thead>
             <tr>
-            <th scope="col">#ID</th>
+            <th scope="col"><a href="{{ route('admin.orderby', ['direction'=> $direction]) }}">#ID</a></th>
             <th scope="col">Titolo progetto</th>
-            <th scope="col">Data di creazione</th>
             <th scope="col">Tipologia</th>
+            <th scope="col">Data di creazione</th>
             <th scope="col">Azioni</th>
             </tr>
         </thead>
@@ -21,14 +21,18 @@
             <tr>
                 <td>{{ $project->id }}</td>
                 <td>{{ $project->title }}</td>
-                <td>{{ $project->date_creation }}</td>
                 <td>{{ $project->type }}</td>
+                <td>{{ $project->date_creation }}</td>
                 <td><a href="{{ route('admin.projects.show' , $project) }}" class="btn btn-primary">Apri</a></td>
             </tr>
             @endforeach
 
         </tbody>
         </table>
+
+        <div>
+            {{ $projects->links() }}
+        </div>
 
 </div>
 @endsection

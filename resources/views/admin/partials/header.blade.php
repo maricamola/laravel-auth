@@ -1,8 +1,8 @@
-<header class="bg-success-subtle">
-    <nav class="navbar navbar-expand-md navbar-light bg-success-subtle">
+<header class="bg-dark">
+    <nav class="navbar navbar-expand-md">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-                <div class="logo_laravel">
+                <div class="logo_laravel text-white">
                     LOGO
                 </div>
                 {{-- config('app.name', 'Laravel') --}}
@@ -16,17 +16,17 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="{{ route('home') }}">Vai al sito</a>
+                        <a class="nav-link text-white" target="_blank" href="{{ route('home') }}">Vai al sito</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('contacts') }}">Contatti</a>
+                        <a class="nav-link text-white" href="{{ route('contacts') }}">Contatti</a>
                     </li>
 
                     {{-- In auth chiudiamo le info visibili solo a chi è loggato --}}
                     @auth()
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.stats') }}">Statistiche</a>
+                            <a class="nav-link text-white" href="{{ route('admin.stats') }}">Statistiche</a>
                         </li>
                     @endauth
 
@@ -48,7 +48,7 @@
                     <li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST">
                             @csrf
-                            <button class="btn btn-link text-black" type="submit">Logout</button>
+                            <button class="btn btn-link text-white" type="submit">Logout</button>
                         </form>
                     </li>
                     @endguest
