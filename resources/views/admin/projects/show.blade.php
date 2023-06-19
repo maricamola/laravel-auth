@@ -2,7 +2,12 @@
 
 @section('content')
 <div class="container p-5">
-    <h1 class="text-center">{{ $project->title}}</h1>
+    <div class="d-flex align-items-center justify-content-center">
+        <h1 class="me-4">{{ $project->title}}</h1>
+        @include('admin.partials.form-delete')
+    </div>
+
+
 
     <div class="d-flex justify-content-between align-items-center">
         <h6 class="text-center m-3">Tipologia: {{ $project->type}}</h6>

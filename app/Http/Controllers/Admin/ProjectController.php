@@ -36,7 +36,11 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $title = 'Creazione nuovo progetto';
+        $method = 'POST';
+        $route = route('admin.projects.store');
+        $project = null;
+        return view('admin.projects.create-edit', compact('title','method','route','project'));
     }
 
     /**
@@ -60,10 +64,9 @@ class ProjectController extends Controller
             //Salvo il nome originale dell'immagine
             $form_data['thumb_original_name'] = $request->file('thumb')->getClientOriginalName();
 
-            $form_data['thumb'] = Storage::put('uploads', $form_data['thumb']);
+            $form_data['thumb'] = Storage::put('uploads/', $form_data['thumb']);
             // dd('esiste');
         }
-
 
 
 
@@ -90,9 +93,12 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Project $project)
     {
-        //
+        $title= "Modifica di: " . $project->title;
+        $method= 'PUT';
+        $route= route('admin.projects.update' , $project);
+        return view('admin.projects.create-edit', compact('title','method','route', 'project'));
     }
 
     /**
@@ -102,9 +108,34 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProjectRequest $request, $project)
     {
-        //
+        $form_data = $request->All();
+        if($form_data['title'] !== $project->title){
+            $form_data['slug'] = Project::generateSlug($form_data['title']);
+        }else{
+            $form_data['slug'] = $project->slug;
+        }
+        $form_data['date_creation'] = date('Y-m-d');
+
+        //Verifico se è stata caricata un'immagine;
+        if(array_key_exists('thumb' , $form_data)){
+
+            //Se l'immagine esiste, elimino quella vecchia
+            if($project->thumb){
+                Storage::disk('public')->delete($project->thumb);
+            }
+
+            //Salvo il nome originale dell'immagine
+            $form_data['thumb_original_name'] = $request->file('thumb')->getClientOriginalName();
+
+            $form_data['thumb'] = Storage::put('uploads/', $form_data['thumb']);
+            // dd('esiste');
+        }
+
+        $project->update($form_data);
+
+        return redirect()->route('admin.projects.show', $project);
     }
 
     /**
@@ -113,8 +144,14 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Project $project)
     {
-        //
+        if($project->thumb){
+            Storage::disk('public')->delete($project->thumb);
+        }
+
+        $project->delete();
+
+        return redirect()->route('admin.projects.index')->with('deleted', 'Progetto eliminato correttamente');
     }
 }

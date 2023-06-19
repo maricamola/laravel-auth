@@ -13,16 +13,18 @@
         </div>
     @endif
 
-    <h4>Inserisci nuovo progetto</h4>
+    <h4>{{ $title }}</h4>
 
-    <form action="{{ route('admin.projects.store')}}" method="POST" enctype="multipart/form-data">
+    <form action="{{ $route }}" method="POST" enctype="multipart/form-data">
         @csrf
+        @method($method)
+
         <div class="mb-3">
             <label for="text" class="form-label">Titolo</label>
             <input
             class="form-control @error('title') is-invalid @enderror"
             id="title"
-            value="{{ old('title') }}"
+            value="{{ old('title', $project?->title) }}"
             type="text"
             name="title"
             placeholder="Titolo">
@@ -61,7 +63,7 @@
             type="text"
             name="description"
             cols="30"
-            rows="10">{{ old('description') }}</textarea>
+            rows="10">{{ old('description', $project?->description) }}</textarea>
             @error('title')
             <p class="text-danger">{{ $message }}</p>
             @enderror
@@ -75,7 +77,7 @@
             class="form-control mb-3"
             name="thumb"
             type="file">
-            <img width="150" id="prev-image" src="" alt="">
+            <img width="150" id="prev-image" src="" onerror="this.src='/img/image-placeholder.jpg'">
         </div>
 
 

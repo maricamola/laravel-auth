@@ -3,6 +3,12 @@
 @section('content')
 <div class="container p-5">
 
+    @if (session('delete'))
+        <div class="alert alert-success" role="alert">
+            {{ session('delete') }}
+        </div>
+    @endif
+
     <h4>Elenco progetti</h4>
 
     <table class="table">
@@ -23,7 +29,12 @@
                 <td>{{ $project->title }}</td>
                 <td>{{ $project->type }}</td>
                 <td>{{ $project->date_creation }}</td>
-                <td><a href="{{ route('admin.projects.show' , $project) }}" class="btn btn-primary">Apri</a></td>
+                <td>
+                    <a href="{{ route('admin.projects.show' , $project) }}" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
+                    <a href="{{ route('admin.projects.edit' , $project) }}" class="btn btn-warning"><i class="fa-solid fa-pen"></i></a>
+
+                    @include('admin.partials.form-delete')
+                </td>
             </tr>
             @endforeach
 
