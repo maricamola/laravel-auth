@@ -4,13 +4,18 @@
 <div class="container p-5">
     <h1 class="text-center">{{ $project->title}}</h1>
 
-    <h6 class="text-center">{{ $project->type}}</h6>
+    <div class="d-flex justify-content-between align-items-center">
+        <h6 class="text-center m-3">Tipologia: {{ $project->type}}</h6>
+        <span>Data di creazione: {{ $project->date_creation}}</span>
+    </div>
+
 
     {{-- Immagine qui!!!! --}}
+    <div class="d-flex justify-content-center">
+        <img class="w-50" src="{{ asset('storage/' . $project->thumb) }}" alt="{{  $project->title }}">
+    </div>
 
-    <p> {!! $project->description !!} </p>
-
-    <span>{{ $project->date_creation}}</span>
+    <p class="p-4"> {!! $project->description !!} </p>
 
 </div>
 @endsection

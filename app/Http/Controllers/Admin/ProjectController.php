@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Http\Requests\ProjectRequest;
+use Illuminate\Support\Facades\Storage;
 
 
 class ProjectController extends Controller
@@ -48,11 +49,25 @@ class ProjectController extends Controller
     {
         // dd($request->all());
         $form_data = $request->all();
-
-        $new_project = new Project();
         // Creare slug
         $form_data['slug'] = Project::generateSlug($form_data['title']);
         $form_data['date_creation'] = date('Y-m-d');
+
+        //Verifico se è stata caricata un'immagine;
+        if(array_key_exists('thumb' , $form_data)){
+
+
+            //Salvo il nome originale dell'immagine
+            $form_data['thumb_original_name'] = $request->file('thumb')->getClientOriginalName();
+
+            $form_data['thumb'] = Storage::put('uploads', $form_data['thumb']);
+            // dd('esiste');
+        }
+
+
+
+
+        $new_project = new Project();
         $new_project->fill($form_data);
         $new_project->save();
         return redirect()->route('admin.projects.show', $new_project);

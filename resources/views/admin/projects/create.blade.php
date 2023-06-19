@@ -15,7 +15,7 @@
 
     <h4>Inserisci nuovo progetto</h4>
 
-    <form action="{{ route('admin.projects.store')}}" method="POST">
+    <form action="{{ route('admin.projects.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="text" class="form-label">Titolo</label>
@@ -67,6 +67,19 @@
             @enderror
         </div>
 
+        <div class="mb-3">
+            <label for="image" class="form-label">Immagine</label>
+            <input
+            id="formFile"
+            onchange="showImage(event)"
+            class="form-control mb-3"
+            name="thumb"
+            type="file">
+            <img width="150" id="prev-image" src="" alt="">
+        </div>
+
+
+
         <button type="submit" class="btn btn-success">Invia</button>
 
 
@@ -81,6 +94,12 @@
         .catch( error => {
             console.error( error );
         } );
+
+    function showImage(event){
+        const tagImage = document.getElementById('prev-image');
+        tagImage.src = URL.createObjectURL(event.target.files[0]);
+    }
+
 </script>
 
 

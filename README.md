@@ -130,3 +130,36 @@ In web.php inseriamo le rotte protette da middleware:
 
 A questo punto il nostro layouts base è completo, volendo possiamo aggiungere pagine 
 
+----------
+
+## Gestione errori 
+
+Creiamo la request con il comando **php artisan make:request NomeRequest**
+
+Apriamo il file appena generato e in authorize cambiato il **false** con **true** 
+
+In rules aggiungiamo i controlli che vogliamo effettuare
+
+Aggiungiamo una **public function messages()** e nel return scriviamo i nostri controlli
+
+Nella file blade.php inseriamo gli errori nei campi prescelti con **@errors**
+
+-------
+
+## Inseriamo le immagine nello Storage
+
+Caricare file nella cartella storage/app/public
+
+In .env sostituire 'local' con 'public'
+
+Creiamo un symlink della cartella storage che punta nella cartella public:
+
+**php artisan storage:link**
+
+Al form inseriamo **enctype="multipart/form-data"** per indicare che contiene dei files.
+
+
+
+
+
+

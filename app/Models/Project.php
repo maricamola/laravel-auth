@@ -17,7 +17,8 @@ class Project extends Model
         'type',
         'thumb',
         'date_creation',
-        'description'
+        'description',
+        'thumb_original_name',
     ];
 
 
