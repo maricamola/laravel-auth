@@ -6,6 +6,15 @@
 
 Nuovo progetto usando laravel breeze ed il pacchetto Laravel 9 Preset con autenticazione.
 
+**Se si vuole clonare la repository i comandi da eseguire per il corretto funzionamento sono;**
+Duplicare e rinominare il file .env
+Eseguire comando npm i 
+Eseguire comando composer install
+Creare la key con php artisan key:generate
+Eseguire comando npm run dev
+Eseguire comando php artisan serve
+Eseguire comando php artisan storage:link (solo se si hanno problemi nella visualizzazione delle immagini.)
+
 ---------
 **TODO:S**
 
@@ -157,6 +166,12 @@ Creiamo un symlink della cartella storage che punta nella cartella public:
 **php artisan storage:link**
 
 Al form inseriamo **enctype="multipart/form-data"** per indicare che contiene dei files.
+
+-------------
+
+## Aggiungiamo la "Category" - One to Many
+
+Creiamo una nuova Migration **php artisan make:model Category -m**
 
 
 
