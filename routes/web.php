@@ -24,7 +24,9 @@ Route::get('/contatti', [PageController::class, 'contacts'])->name('contacts');
 
 
 Route::middleware(['auth' , 'verified'])
+        //Prefisso tutti i file
         ->name('admin.')
+        //Prefisso uri
         ->prefix('admin')
         ->group(function(){
             Route::get('/', [DashboardController::class, 'index'])->name('home');
